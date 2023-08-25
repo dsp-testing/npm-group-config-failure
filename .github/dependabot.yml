@@ -1,0 +1,23 @@
+version: 2
+      
+registries: 
+  artifactory:
+    type: npm-registry
+    url: "https://example.com"
+    username: ${{ secrets.ARTIFACTORY_USERNAME }}
+    password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+    
+updates:
+  - package-ecosystem: "npm"
+    registries:
+      - artifactory
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "05:30"
+      timezone: "Europe/Copenhagen"
+    groups:
+      wdio:
+        patterns:
+          - "@wdio*"
